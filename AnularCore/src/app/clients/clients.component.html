@@ -1,0 +1,214 @@
+<h2>Klienci</h2>
+
+
+<button type="button" class="btn btn-primary" (click)="openModal(template)">Dodaj klienta</button>
+
+<ng2-smart-table [settings]="settings" [source]="source" (custom)="onCustomAction($event, detailsTemplate)"></ng2-smart-table>
+
+<ng-template #template>
+  <form class="form-signin" #loginForm="ngForm" (ngSubmit)="addClient(loginForm)">
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">Nowy klient</h4>
+      <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="form-group row">
+            <label class="col-sm-10 col-form-label">Klient firmowy</label>
+            <div class="col-sm-2">
+              <input name="model" value="1" type="radio" [(ngModel)]="model">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="form-group row">
+            <label class="col-sm-10 col-form-label">Klient indywidualny</label>
+            <div class="col-sm-2">
+              <input name="model" value="2" type="radio" [(ngModel)]="model">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="form-group">
+            <label>Ulica</label>
+            <input name="Street" id="Street" ngModel class="form-control">
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="form-group">
+            <label>Numer domu</label>
+            <input name="HouseNumber" id="HouseNumber" ngModel class="form-control">
+          </div>
+        </div>
+      </div> <div class="row">
+        <div class="col-lg-6">
+          <div class="form-group">
+            <label>Telefon kontaktowy</label>
+            <input name="PhoneNumber" id="PhoneNumber" ngModel class="form-control">
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="form-group">
+            <label>Kod pocztowy</label>
+            <input name="PostalCode" id="PostalCode" ngModel class="form-control">
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="form-group">
+            <label>Mail</label>
+            <input name="Email" id="Email" ngModel class="form-control">
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="form-group">
+            <label>Miasto</label>
+            <input name="City" id="City" ngModel class="form-control">
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="form-group">
+            <label>Imie</label>
+            <input name="Name" id="Name" ngModel class="form-control">
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="form-group">
+            <label>Nazwisko</label>
+            <input name="SureName" id="SureName" ngModel class="form-control">
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-6" [hidden]="model == 2">
+          <div class="form-group">
+            <label>NIP</label>
+            <input name="Nip" id="Nip" ngModel class="form-control">
+          </div>
+        </div>
+        <div class="col-lg-6" [hidden]="model == 2">
+          <div class="form-group">
+            <label>Regon</label>
+            <input name="Regon" id="Regon" ngModel class="form-control">
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-6" [hidden]="model == 2">
+          <div class="form-group">
+            <label>Nazwa firmy</label>
+            <input name="CompanyName" id="CompanyName" ngModel class="form-control">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-primary" type="submit">Dodaj</button>
+      <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="modalRef.hide()">Close</button>
+    </div>
+  </form>
+</ng-template>
+
+<ng-template #detailsTemplate>
+  <form class="form-signin" #detailsForm="ngForm">
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">Klient</h4>
+      <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="form-group">
+            <label>Ulica</label>
+            <input name="Street" id="Street"  [(ngModel)]="client.Street" class="form-control">
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="form-group">
+            <label>Numer domu</label>
+            <input name="HouseNumber" id="HouseNumber" [(ngModel)]="client.HouseNumber" class="form-control">
+          </div>
+        </div>
+      </div> <div class="row">
+        <div class="col-lg-6">
+          <div class="form-group">
+            <label>Telefon kontaktowy</label>
+            <input name="PhoneNumber" id="PhoneNumber" [(ngModel)]="client.PhoneNumber" class="form-control">
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="form-group">
+            <label>Kod pocztowy</label>
+            <input name="PostalCode" id="PostalCode" [(ngModel)]="client.PostalCode" class="form-control">
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="form-group">
+            <label>Mail</label>
+            <input name="Email" id="Email"  [(ngModel)]="client.Email"  class="form-control">
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="form-group">
+            <label>Miasto</label>
+            <input name="City" id="City" [(ngModel)]="client.City"  class="form-control">
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="form-group">
+            <label>Imie</label>
+            <input name="Name" id="Name" [(ngModel)]="client.Name"  class="form-control">
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="form-group">
+            <label>Nazwisko</label>
+            <input name="SureName" id="SureName" [(ngModel)]="client.SureName"  class="form-control">
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="form-group">
+            <label>NIP</label>
+            <input name="Nip" id="Nip" [(ngModel)]="client.Nip" class="form-control">
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="form-group">
+            <label>Regon</label>
+            <input name="Regon" id="Regon" [(ngModel)]="client.Regon" class="form-control">
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="form-group">
+            <label>Nazwa firmy</label>
+            <input name="CompanyName" id="CompanyName" [(ngModel)]="client.Name" class="form-control">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-primary" type="submit">Dodaj</button>
+      <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="modalRef.hide()">Close</button>
+    </div>
+  </form>
+</ng-template>
