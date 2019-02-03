@@ -16,6 +16,7 @@ namespace AnularCore.repository
     public DBContext(DbContextOptions<DBContext> options)
         : base(options)
     {
+  
     }
 
     public virtual DbSet<User> Users { get; set; }

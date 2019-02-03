@@ -32,55 +32,80 @@ namespace Warsztat.Controllers
     [HttpPost, Route("AddIndividualCustomer")]
     public IActionResult AddIndividualCustomer([FromBody]Client user)
     {
-      //TODO add try catch
-      Individual newClient = new Individual()
+      try
       {
-        City = user.City,
-        Email = user.Email,
-        HouseNumber = user.HouseNumber,
-        Name = user.Name,
-        PhoneNumber = user.PhoneNumber,
-        PostalCode = user.PostalCode,
-        Street = user.Street,
-        Surename = user.Surename
-      };
+        Individual newClient = new Individual()
+        {
+          City = user.City,
+          Email = user.Email,
+          HouseNumber = user.HouseNumber,
+          Name = user.Name,
+          PhoneNumber = user.PhoneNumber,
+          PostalCode = user.PostalCode,
+          Street = user.Street,
+          Surename = user.Surename
+        };
 
-      _DbContext.Clients.Add(newClient);
-      _DbContext.SaveChanges();
+        _DbContext.Clients.Add(newClient);
+        _DbContext.SaveChanges();
 
-      return Ok();
+        return Ok();
+      }
+      catch (Exception ex)
+      {
+        return BadRequest(ex.Message);
+      }
+      //TODO add try catch
+      
     }
 
     [HttpPost, Route("AddCompanyCustomer")]
     public IActionResult AddCompanyCustomer([FromBody]Client user)
     {
-      //TODO add try catch
-      Company newClient = new Company()
+      try
       {
-        City = user.City,
-        Email = user.Email,
-        HouseNumber = user.HouseNumber,
-        Name = user.CompanyName,
-        PhoneNumber = user.PhoneNumber,
-        PostalCode = user.PostalCode,
-        Street = user.Street,
-        NIP = user.NIP,
-        REGON = user.REGON
-      };
+        Company newClient = new Company()
+        {
+          City = user.City,
+          Email = user.Email,
+          HouseNumber = user.HouseNumber,
+          Name = user.CompanyName,
+          PhoneNumber = user.PhoneNumber,
+          PostalCode = user.PostalCode,
+          Street = user.Street,
+          NIP = user.NIP,
+          REGON = user.REGON
+        };
 
-      _DbContext.Clients.Add(newClient);
-      _DbContext.SaveChanges();
+        _DbContext.Clients.Add(newClient);
+        _DbContext.SaveChanges();
 
-      return Ok();
+        return Ok();
+      }
+      catch (Exception ex)
+      {
+        return BadRequest(ex.Message);
+      
+      }
+      //TODO add try catch
+    
     }
 
     [HttpGet, Route("GetCompanyCustomers")]
     public IActionResult GetCompanyCustomers()
     {
-      var clients =_DbContext.Clients.ToList();
-
+      try
+      {
+        var clients =_DbContext.Clients.ToList();
+       
       return Ok(clients);
-    }
+      }
+      catch (Exception ex)
+      {
+        return BadRequest(ex.Message);
+
+  }
+}
 
     [HttpGet, Route("GetClient")]
     public IActionResult GetClient(string id)

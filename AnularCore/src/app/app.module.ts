@@ -9,6 +9,7 @@ import { RouterModule } from '@angular/router';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { ImageUploadModule } from "angular2-image-upload";
 import { Ng2SmartTableModule } from 'ng2-smart-table';
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -18,8 +19,7 @@ import { HeaderComponent } from './shared/layout/header.component';
 import { FooterComponent } from './shared/layout/footer.component';
 import { OrdersComponent } from './orders/orders.component';
 import { ClientsComponent } from './clients/clients.component';
-import { ModalModule } from 'ngx-bootstrap/modal';
-
+import { ClientsDetailsComponent } from './clients/clientsDetails.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +30,8 @@ import { ModalModule } from 'ngx-bootstrap/modal';
     HeaderComponent,
     FooterComponent,
     OrdersComponent,
-    ClientsComponent,   
+    ClientsComponent,
+    ClientsDetailsComponent
     
   ],
   imports: [
@@ -47,6 +48,7 @@ import { ModalModule } from 'ngx-bootstrap/modal';
       { path: 'clients', component: ClientsComponent },
       { path: 'login', component: LoginComponent },      
       { path: 'customers', component: CustomersComponent, canActivate: [AuthGuard] },
+      { path: 'clientDetails/:id', component: ClientsDetailsComponent }
     ]),
     ModalModule.forRoot()
   ],

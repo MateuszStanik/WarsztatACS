@@ -1,0 +1,114 @@
+
+<button type="button" class="btn btn-primary" (click)="openModal(newCar)">Dodaj samochód klienta</button>
+<div class="row">
+  <div class="col-lg-6">
+    <label>Ulica</label>
+    <input name="Street" id="Street" [(ngModel)]="client.Street" class="form-control">
+  </div>
+  <div class="col-lg-6">
+    <label>Numer domu</label>
+    <input name="HouseNumber" id="HouseNumber" [(ngModel)]="client.HouseNumber" class="form-control">
+  </div>
+</div> <div class="row">
+  <div class="col-lg-6">
+    <label>Telefon kontaktowy</label>
+    <input name="PhoneNumber" id="PhoneNumber" [(ngModel)]="client.PhoneNumber" class="form-control">
+  </div>
+  <div class="col-lg-6">
+    <label>Kod pocztowy</label>
+    <input name="PostalCode" id="PostalCode" [(ngModel)]="client.PostalCode" class="form-control">
+  </div>
+</div>
+<div class="row">
+  <div class="col-lg-6">
+    <label>Mail</label>
+    <input name="Email" id="Email" [(ngModel)]="client.Email" class="form-control">
+  </div>
+  <div class="col-lg-6">
+    <label>Miasto</label>
+    <input name="City" id="City" [(ngModel)]="client.City" class="form-control">
+  </div>
+</div>
+<div class="row">
+  <div class="col-lg-6">
+    <label>Imie</label>
+    <input name="Name" id="Name" [(ngModel)]="client.Name" class="form-control">
+  </div>
+  <div class="col-lg-6">
+
+    <label>Nazwisko</label>
+    <input name="SureName" id="SureName" [(ngModel)]="client.SureName" class="form-control">
+
+  </div>
+</div>
+<div class="row">
+  <div class="col-lg-6">
+    <label>NIP</label>
+    <input name="Nip" id="Nip" [(ngModel)]="client.Nip" class="form-control">
+  </div>
+  <div class="col-lg-6">
+    <label>Regon</label>
+    <input name="Regon" id="Regon" [(ngModel)]="client.Regon" class="form-control">
+  </div>
+</div>
+<div class="row">
+  <div class="col-lg-6">
+    <label>Nazwa firmy</label>
+    <input name="CompanyName" id="CompanyName" [(ngModel)]="client.Name" class="form-control">
+  </div>
+</div>
+
+<ng2-smart-table [settings]="settings" [source]="source" (deleteConfirm)="onDeleteConfirm($event)"></ng2-smart-table>
+<ng-template #newCar>
+  <form class="form-signin" #loginForm="ngForm" (ngSubmit)="addCar()">
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">Nowy klient</h4>
+      <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="row">
+        <div class="col-lg-6">
+          <label>Marka</label>
+          <input name="Marka" id="Marka" [(ngModel)]="car.Brand" class="form-control">
+        </div>
+        <div class="col-lg-6">
+          <label>Model</label>
+          <input name="Model" id="Model" [(ngModel)]="car.Model" class="form-control">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-6">
+          <label>Rodzaj silnika</label>
+          <input name="RodzajSilnika" id="RodzajSilnika" [(ngModel)]="car.EngineType" class="form-control">
+        </div>
+        <div class="col-lg-6">
+          <label>Rocznik</label>
+          <input name="Rocznik" id="Rocznik" type='date' [(ngModel)]="car.Year" class="form-control">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-6">
+          <label>Pojemnosc</label>
+          <input name="Pojemnosc" id="Pojemnosc" [(ngModel)]="car.Capacity" class="form-control">
+        </div>
+        <div class="col-lg-6">
+          <label>Moc</label>
+          <input name="Moc" id="Moc" [(ngModel)]="car.Power" class="form-control">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-6">
+          <label>Vin</label>
+          <input name="Vin" id="Vin" [(ngModel)]="car.CarIdentificator" class="form-control">
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-primary" type="submit" (click)="modalRef.hide()">Dodaj</button>
+      <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="modalRef.hide()">Close</button>
+    </div>
+  </form>
+</ng-template>
+<a routerLink="/">Powrót</a>

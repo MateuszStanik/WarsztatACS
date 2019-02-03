@@ -12,7 +12,7 @@ export class OrdersComponent implements OnInit {
 
   ngOnInit() {
     let token = localStorage.getItem("jwt");
-    this.http.get("https://localhost:44335/api/client/get", {
+    this.http.get("http://acs.hostingasp.pl/api/client/get", {
       headers: new HttpHeaders({
         "Authorization": "Bearer " + token,
         "assets-Type": "application/json"

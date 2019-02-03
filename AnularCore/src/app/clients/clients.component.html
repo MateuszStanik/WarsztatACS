@@ -2,7 +2,7 @@
 
 
 <button type="button" class="btn btn-primary" (click)="openModal(template)">Dodaj klienta</button>
-
+<!--<a [routerLink]="['/customers', 2]">Idz do klienta</a>-->
 <ng2-smart-table [settings]="settings" [source]="source" (custom)="onCustomAction($event, detailsTemplate)"></ng2-smart-table>
 
 <ng-template #template>
@@ -132,7 +132,7 @@
         <div class="col-lg-6">
           <div class="form-group">
             <label>Ulica</label>
-            <input name="Street" id="Street"  [(ngModel)]="client.Street" class="form-control">
+            <input name="Street" id="Street" [(ngModel)]="client.Street" class="form-control">
           </div>
         </div>
         <div class="col-lg-6">
@@ -159,13 +159,13 @@
         <div class="col-lg-6">
           <div class="form-group">
             <label>Mail</label>
-            <input name="Email" id="Email"  [(ngModel)]="client.Email"  class="form-control">
+            <input name="Email" id="Email" [(ngModel)]="client.Email" class="form-control">
           </div>
         </div>
         <div class="col-lg-6">
           <div class="form-group">
             <label>Miasto</label>
-            <input name="City" id="City" [(ngModel)]="client.City"  class="form-control">
+            <input name="City" id="City" [(ngModel)]="client.City" class="form-control">
           </div>
         </div>
       </div>
@@ -173,13 +173,13 @@
         <div class="col-lg-6">
           <div class="form-group">
             <label>Imie</label>
-            <input name="Name" id="Name" [(ngModel)]="client.Name"  class="form-control">
+            <input name="Name" id="Name" [(ngModel)]="client.Name" class="form-control">
           </div>
         </div>
         <div class="col-lg-6">
           <div class="form-group">
             <label>Nazwisko</label>
-            <input name="SureName" id="SureName" [(ngModel)]="client.SureName"  class="form-control">
+            <input name="SureName" id="SureName" [(ngModel)]="client.SureName" class="form-control">
           </div>
         </div>
       </div>

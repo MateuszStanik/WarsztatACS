@@ -52,8 +52,10 @@ namespace AnularCore
                             ValidateLifetime = true,
                             ValidateIssuerSigningKey = true,
 
-                            ValidIssuer = "https://localhost:44335",
-                            ValidAudience = "https://localhost:44335",
+                            //ValidIssuer = "https://localhost:44335/",
+                            //ValidAudience = "https://localhost:44335/",
+                            ValidIssuer = "http://acs.hostingasp.pl",
+                            ValidAudience = "http://acs.hostingasp.pl",
                             IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("superSecretKey@345"))
                           };
                         });
@@ -64,6 +66,7 @@ namespace AnularCore
 
             var container = containerBuilder.Build();
             return container.Resolve<IServiceProvider>();
+
       // Register your own services within Autofac
 
       //services.AddCors(options =>

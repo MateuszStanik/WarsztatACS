@@ -45,8 +45,8 @@ namespace AnularCore.Controllers
                 };
 
         var tokeOptions = new JwtSecurityToken(
-            issuer: "https://localhost:44335",
-            audience: "https://localhost:44335",
+            issuer: "http://acs.hostingasp.pl",
+            audience: "http://acs.hostingasp.pl",
             claims: claims,
             expires: DateTime.Now.AddMinutes(5),
             signingCredentials: signinCredentials

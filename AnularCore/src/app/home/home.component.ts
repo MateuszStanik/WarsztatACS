@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { JwtHelper } from 'angular2-jwt';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -8,7 +10,18 @@ import { Component } from '@angular/core';
 export class HomeComponent {
 
 
-  constructor() {
+  constructor(private jwtHelper: JwtHelper, private router: Router) {
 
+  }
+
+  isUserAuthenticated() {
+    let token: string = localStorage.getItem("jwt");
+    if (token && !this.jwtHelper.isTokenExpired(token)) {
+      return true;
+    }
+    else {
+      this.router.navigate(['/login']);
+      return false;
+    }
   }
 }
