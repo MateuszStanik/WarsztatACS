@@ -20,6 +20,7 @@ import { FooterComponent } from './shared/layout/footer.component';
 import { OrdersComponent } from './orders/orders.component';
 import { ClientsComponent } from './clients/clients.component';
 import { ClientsDetailsComponent } from './clients/clientsDetails.component';
+import { CarsComponent } from './cars/cars.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { ClientsDetailsComponent } from './clients/clientsDetails.component';
     FooterComponent,
     OrdersComponent,
     ClientsComponent,
-    ClientsDetailsComponent
+    ClientsDetailsComponent,
+    CarsComponent
     
   ],
   imports: [
@@ -44,11 +46,13 @@ import { ClientsDetailsComponent } from './clients/clientsDetails.component';
     ImageUploadModule.forRoot(),
     RouterModule.forRoot([
       { path: '', component: HomeComponent },
-      { path: 'orders', component: OrdersComponent },
-      { path: 'clients', component: ClientsComponent },
-      { path: 'login', component: LoginComponent },      
+      { path: 'orders', component: OrdersComponent, canActivate: [AuthGuard] },
+      { path: 'clients', component: ClientsComponent, canActivate: [AuthGuard] },
+      { path: 'login', component: LoginComponent },
+      { path: 'cars/:id', component: CarsComponent},
       { path: 'customers', component: CustomersComponent, canActivate: [AuthGuard] },
-      { path: 'clientDetails/:id', component: ClientsDetailsComponent }
+      { path: 'clientDetails/:id', component: ClientsDetailsComponent },
+      //{ path: 'cars/:id', component: ClientsDetailsComponent }
     ]),
     ModalModule.forRoot()
   ],

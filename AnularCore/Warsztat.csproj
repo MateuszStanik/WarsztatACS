@@ -33,6 +33,7 @@
   <ItemGroup>
     <Folder Include="dist\out-tsc\src\" />
     <Folder Include="Migrations\" />
+    <Folder Include="src\app\cars\" />
     <Folder Include="wwwroot\" />
   </ItemGroup>
 

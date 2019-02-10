@@ -52,10 +52,10 @@ namespace AnularCore
                             ValidateLifetime = true,
                             ValidateIssuerSigningKey = true,
 
-                            //ValidIssuer = "https://localhost:44335/",
-                            //ValidAudience = "https://localhost:44335/",
-                            ValidIssuer = "http://acs.hostingasp.pl",
-                            ValidAudience = "http://acs.hostingasp.pl",
+                            ValidIssuer = "http://localhost:1405/",
+                            ValidAudience = "http://localhost:1405/",
+                            //ValidIssuer = "http://acs.hostingasp.pl",
+                            //ValidAudience = "http://acs.hostingasp.pl",
                             IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("superSecretKey@345"))
                           };
                         });

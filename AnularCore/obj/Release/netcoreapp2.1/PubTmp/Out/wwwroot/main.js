@@ -160,8 +160,8 @@ var AppModule = /** @class */ (function () {
                 angular2_image_upload__WEBPACK_IMPORTED_MODULE_9__["ImageUploadModule"].forRoot(),
                 _angular_router__WEBPACK_IMPORTED_MODULE_7__["RouterModule"].forRoot([
                     { path: '', component: _home_home_component__WEBPACK_IMPORTED_MODULE_13__["HomeComponent"] },
-                    { path: 'orders', component: _orders_orders_component__WEBPACK_IMPORTED_MODULE_18__["OrdersComponent"] },
-                    { path: 'clients', component: _clients_clients_component__WEBPACK_IMPORTED_MODULE_19__["ClientsComponent"] },
+                    { path: 'orders', component: _orders_orders_component__WEBPACK_IMPORTED_MODULE_18__["OrdersComponent"], canActivate: [_guards_auth_guard_service__WEBPACK_IMPORTED_MODULE_1__["AuthGuard"]] },
+                    { path: 'clients', component: _clients_clients_component__WEBPACK_IMPORTED_MODULE_19__["ClientsComponent"], canActivate: [_guards_auth_guard_service__WEBPACK_IMPORTED_MODULE_1__["AuthGuard"]] },
                     { path: 'login', component: _login_login_component__WEBPACK_IMPORTED_MODULE_14__["LoginComponent"] },
                     { path: 'customers', component: _customers_customers_component__WEBPACK_IMPORTED_MODULE_15__["CustomersComponent"], canActivate: [_guards_auth_guard_service__WEBPACK_IMPORTED_MODULE_1__["AuthGuard"]] },
                     { path: 'clientDetails/:id', component: _clients_clientsDetails_component__WEBPACK_IMPORTED_MODULE_20__["ClientsDetailsComponent"] }
@@ -766,6 +766,9 @@ module.exports = "<section>\r\n  <div class=\"row\">\r\n    <div class=\"col-lg-
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HomeComponent", function() { return HomeComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var angular2_jwt__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! angular2-jwt */ "./node_modules/angular2-jwt/angular2-jwt.js");
+/* harmony import */ var angular2_jwt__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(angular2_jwt__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -776,16 +779,30 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
+
 var HomeComponent = /** @class */ (function () {
-    function HomeComponent() {
+    function HomeComponent(jwtHelper, router) {
+        this.jwtHelper = jwtHelper;
+        this.router = router;
     }
+    HomeComponent.prototype.ngOnInit = function () {
+        var token = localStorage.getItem("jwt");
+        if (token && !this.jwtHelper.isTokenExpired(token)) {
+            this.isUserAuthenticated = true;
+        }
+        else {
+            this.router.navigate(['/login']);
+            this.isUserAuthenticated = false;
+        }
+    };
     HomeComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-home',
             template: __webpack_require__(/*! ./home.component.html */ "./src/app/home/home.component.html"),
             styles: [__webpack_require__(/*! ./home.component.css */ "./src/app/home/home.component.css")]
         }),
-        __metadata("design:paramtypes", [])
+        __metadata("design:paramtypes", [angular2_jwt__WEBPACK_IMPORTED_MODULE_1__["JwtHelper"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]])
     ], HomeComponent);
     return HomeComponent;
 }());

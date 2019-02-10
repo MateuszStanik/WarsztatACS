@@ -49,6 +49,15 @@ namespace Warsztat.Controllers
       return Ok(cars);
     }
 
+    [HttpGet, Route("GetCarDetailsById")]
+    public IActionResult GetCarDetailsById(string id)
+    {
+      int carId = Int32.Parse(id);
+      var car =_DbContext.Cars.Where(x =>x.CarId == carId).Single();
+
+      return Ok(car);
+    }
+
     [HttpDelete, Route("DeleteCar")]
     public IActionResult DeleteCar(string id)
     {

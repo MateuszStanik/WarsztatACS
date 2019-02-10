@@ -11,8 +11,9 @@ import { LocalDataSource } from 'ng2-smart-table';
   templateUrl: './clients.component.html', 
 })
 export class ClientsComponent implements OnInit {
-  source: LocalDataSource;
+  source = new LocalDataSource();
   modalRef: BsModalRef;
+  client: Client;
 
   settings = {
     hideSubHeader: true,
@@ -52,7 +53,7 @@ export class ClientsComponent implements OnInit {
     }
   };
 
-  //client = new Client('', '', '', '', '', '', '', '', '', '');
+  
 
   onCustomAction(event, template: TemplateRef<any>) {
     console.log(event.data.clinetId);
@@ -69,7 +70,7 @@ export class ClientsComponent implements OnInit {
   dane: any[];
   getData(): Promise<any> {
     let promis = new Promise((resolve, reject) => {
-      let apiURL = "http://acs.hostingasp.pl/api/client/GetCompanyCustomers";
+      let apiURL = "http://localhost:1405/api/client/GetCompanyCustomers";
       this.http.get(apiURL)
         .toPromise()
         .then(
@@ -90,7 +91,7 @@ export class ClientsComponent implements OnInit {
     let params = new HttpParams().set("id", id);
 
     let promis = new Promise((resolve, reject) => {
-      let apiURL = "http://acs.hostingasp.pl/api/client/GetClient";
+      let apiURL = "http://localhost:1405/api/client/GetClient";
       this.http.get(apiURL, {
         headers: new HttpHeaders({
           "Content-Type": "application/json",
@@ -113,8 +114,8 @@ export class ClientsComponent implements OnInit {
 
   constructor(private router: Router, private http: HttpClient, private modalService: BsModalService) {}
   ngOnInit() {
-    this.source = new LocalDataSource();
-
+    //this.source = new LocalDataSource();
+    this.client = new Client('', '', '', '', '', '', '', '', '', '');
     this.getData().then((data) => {
       this.source.load(data);
     });
@@ -132,8 +133,8 @@ export class ClientsComponent implements OnInit {
     let credentials = JSON.stringify(form.value);
 
     console.log(form.value.PhoneNumber);
-    var urlIndividual = "http://acs.hostingasp.pl/api/client/AddIndividualCustomer";
-    var urlCompany =  "http://acs.hostingasp.pl/api/client/AddCompanyCustomer";
+    var urlIndividual = "http://localhost:1405/api/client/AddIndividualCustomer";
+    var urlCompany =  "http://localhost:1405/api/client/AddCompanyCustomer";
     let url = urlCompany;
     if (this.model=="2") {
       url = urlIndividual;

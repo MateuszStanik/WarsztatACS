@@ -58,7 +58,7 @@
   </div>
 </div>
 
-<ng2-smart-table [settings]="settings" [source]="source" (deleteConfirm)="onDeleteConfirm($event)"></ng2-smart-table>
+<ng2-smart-table [settings]="settings" [source]="source" (deleteConfirm)="onDeleteConfirm($event)" (custom)="onNewOrder($event)"></ng2-smart-table>
 <ng-template #newCar>
   <form class="form-signin" #loginForm="ngForm" (ngSubmit)="addCar()">
     <div class="modal-header">

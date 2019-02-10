@@ -1,6 +1,7 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
+import { Router } from "@angular/router";
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
 import { LocalDataSource } from 'ng2-smart-table';
@@ -25,6 +26,7 @@ export class ClientsDetailsComponent implements OnInit {
     actions: {
       add: false,
       edit: false,
+      custom: [{ name: 'onNewOrder', title: 'Szczegóły samochodu' }],
     },
     columns: {      
       carId: {
@@ -56,7 +58,7 @@ export class ClientsDetailsComponent implements OnInit {
 
   onDeleteConfirm(event) {
     console.log(event);
-    let url = "http://acs.hostingasp.pl/api/car/DeleteCar";
+    let url = "http://localhost:1405/api/car/DeleteCar";
     let params = new HttpParams().set("id", event.data.carId);
     console.log(event.data.carId);
 
@@ -76,7 +78,13 @@ export class ClientsDetailsComponent implements OnInit {
     this.ngOnInit();
   }
 
-  constructor(private route: ActivatedRoute, private http: HttpClient, private modalService: BsModalService) { }
+  onNewOrder(event) {
+    console.log(event.data.clinetId);
+    //this.router.navigate(['/carGetCarDetailsById', event.data.clinetId]);
+    this.router.navigate(['/cars', event.data.carId]);
+  }
+
+  constructor(private route: ActivatedRoute, private router: Router, private http: HttpClient, private modalService: BsModalService) { }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
@@ -99,7 +107,7 @@ export class ClientsDetailsComponent implements OnInit {
   getCars(id: number): Promise<any> {
     let params = new HttpParams().set("id", id.toString());
     let promis = new Promise((resolve, reject) => {
-      let apiURL = "http://acs.hostingasp.pl/api/car/GetCarsForClient";
+      let apiURL = "http://localhost:1405/api/car/GetCarsForClient";
       this.http.get(apiURL, {
         headers: new HttpHeaders({
           "Content-Type": "application/json",
@@ -124,7 +132,7 @@ export class ClientsDetailsComponent implements OnInit {
     this.car = new Car(0, '', '', new Date(), '', 0, 0, '');
   }
   addCar() {
-    let url = "http://acs.hostingasp.pl/api/car/AddCarForClient";
+    let url = "http://localhost:1405/api/car/AddCarForClient";
 
     var body = {
       ClientId: this.id,
@@ -158,7 +166,7 @@ export class ClientsDetailsComponent implements OnInit {
     let params = new HttpParams().set("id", id.toString());
 
     let promis = new Promise((resolve, reject) => {
-      let apiURL = "http://acs.hostingasp.pl/api/client/GetClient";
+      let apiURL = "http://localhost:1405/api/client/GetClient";
       this.http.get(apiURL, {
         headers: new HttpHeaders({
           "Content-Type": "application/json",

@@ -1,11 +1,12 @@
-<h2>Klienci</h2>
+
+<h2><img src="../../assets/clients_small.png" />  Klienci</h2>
 
 
-<button type="button" class="btn btn-primary" (click)="openModal(template)">Dodaj klienta</button>
-<!--<a [routerLink]="['/customers', 2]">Idz do klienta</a>-->
+<!--<button type="button" class="btn btn-primary" (click)="openModal(template)">Dodaj klienta</button>-->
+
 <ng2-smart-table [settings]="settings" [source]="source" (custom)="onCustomAction($event, detailsTemplate)"></ng2-smart-table>
 
-<ng-template #template>
+<!--<ng-template #template>
   <form class="form-signin" #loginForm="ngForm" (ngSubmit)="addClient(loginForm)">
     <div class="modal-header">
       <h4 class="modal-title pull-left">Nowy klient</h4>
@@ -117,7 +118,7 @@
       <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="modalRef.hide()">Close</button>
     </div>
   </form>
-</ng-template>
+</ng-template>-->
 
 <ng-template #detailsTemplate>
   <form class="form-signin" #detailsForm="ngForm">
